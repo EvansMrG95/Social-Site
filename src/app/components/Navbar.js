@@ -10,4 +10,4 @@ const navbar = () => {
     )
 }
 //change
-export default navbar
+export default navbar;
