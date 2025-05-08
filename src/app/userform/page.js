@@ -1,5 +1,6 @@
 "use client"
 import {useState} from 'react'
+import { ToastContainer, toast } from 'react-toastify';
 
 const page = () => {
 
@@ -9,7 +10,6 @@ const page = () => {
         price: "",
         imageUrl: "",
     })
-
 
     const handleInputChange = (event) => {
 
@@ -24,9 +24,11 @@ const page = () => {
         event.preventDefault()
         const localStorageBusiness = localStorage.getItem("business")
         if(!businessObject.businessName || !businessObject.description){
-            alert("Please fill out all fields")
+            toast("Please fill out all fields")
             return
         }
+
+        toast("Product submitted!")
 
         const businessWithId = {
             ...businessObject,
@@ -70,7 +72,7 @@ const page = () => {
                     </label>
                 </div>
                 <div className='md:w-2/3'>
-                        <input name='description' placeholder='todo description' onChange={handleInputChange} className='bg-gray-200 border-2 border-gray-200' />
+                        <input name='description' placeholder='Product/Business description' onChange={handleInputChange} className='bg-gray-200 border-2 border-gray-200' />
                 </div>                   
                 <div className='md:w-1/3'>
                     <label className='text-gray-500 font-bold pr-4'>
@@ -78,11 +80,12 @@ const page = () => {
                     </label>
                 </div>
                 <div className='md:w-2/3'>
-                    <input name='imageUrl' placeholder='please enter imag' onChange={handleInputChange} className='bg-gray-200 border-2 border-gray-200' />
+                    <input name='imageUrl' placeholder='please enter image of product' onChange={handleInputChange} className='bg-gray-200 border-2 border-gray-200' />
                 </div>
                 <button type="submit" className='cursor-pointer bg-blue-500 p-4'>
                     Save business
                 </button>
+                <ToastContainer />
             </div>
         </form>
     </div>

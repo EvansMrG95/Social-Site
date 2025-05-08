@@ -30,7 +30,7 @@ const SocialCard = ({
   return (
     <div className='flex flex-col mx-auto w-[75%] outline rounded-lg shadow-2xl p-10 bg-sky-300/70 space-y-5 mb-5'>
         <h1 className='text-3xl font-bold text-start p-5 ml-5 border-b-2 border-gray-300'>{name}</h1>
-        <div className='flex justify-between'>
+        <div className='flex justify-between space-x-2'>
           <img src={`${imgAddress}`} className='self-center h-100 w-100 object-scale-down border shadow-xl rounded-xl'></img>
           <p className='text-xl p-5 border shadow-xl rounded-xl'>{postText}</p>
         </div>

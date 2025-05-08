@@ -26,7 +26,7 @@ const post = [
 export default function Home() {
   return (
     <div>
-      <p className="text-5xl font-bold text-gray-800 text-center mb-6">Profit Platform</p>
+      <h1 className="text-5xl font-bold text-white-800 text-center mb-6">Profit Platform</h1>
       {post.map((item) => {
         return (
           <SocialCard 
