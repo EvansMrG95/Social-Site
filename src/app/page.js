@@ -1,41 +1,35 @@
 "use client"
-import Image from "next/image";
-import React from "react"
+import {useState, useEffect} from "react"
 import SocialCard from "./components/SocialCard";
 
-const post = [
-  {
-    name: "Electric Toothbrush Kit",
-    imgAddress: "https://cdn.pixabay.com/photo/2013/05/31/20/03/toothbrush-115105_960_720.jpg",
-    postText: `An electric toothbrush kit typically includes a rechargeable electric toothbrush handle, one or more brush heads, and a charging base or USB cable. Some kits may also feature a travel case, built-in timers, pressure sensors, or multiple brushing modes for plaque removal, gum care, and whitening. Designed to improve oral hygiene more effectively than manual brushing, these kits are ideal for users seeking convenience and better dental care.`,
-    reccomendedPrice: 34.99,
-    initialLikeCount: 0,
-    intialDislikeCount: 0,
-  },
-  {
-    name: "Robot Vacuum Dust Cleaner",
-    imgAddress: "https://cdn.pixabay.com/photo/2023/07/08/10/47/vacuum-cleaner-8114145_960_720.jpg",
-    postText: `This Robot Vacuum takes the hassle out of everyday cleaning with powerful suction, smart navigation, and automatic dust collection. Designed to glide effortlessly across carpets and hard floors, it picks up dirt, dust, pet hair, and debris with ease. With scheduled cleaning, obstacle detection, and auto-return charging, it’s the perfect low-maintenance solution for busy homes.`,
-
-    reccomendedPrice: 249.99,
-    initialLikeCount: 0,
-    intialDislikeCount: 0,
-  }
-]
-
 export default function Home() {
+
+  const [business, setBusiness] = useState([])
+
+  useEffect(() => {
+    const loadbusiness = () => {
+      const storedBusiness = localStorage.getItem("business")
+      if(storedBusiness) {
+        const parsedBusiness = JSON.parse(storedBusiness)
+        setBusiness(parsedBusiness)
+      }
+    }
+    loadbusiness()
+  }, [])
+
   return (
     <div>
       <h1 className="text-5xl font-bold text-white-800 text-center mb-6">Profit Platform</h1>
-      {post.map((item) => {
+      {business.map((item) => {
         return (
           <SocialCard 
-            key={item.name}
-            name={item.name}
-            imgAddress={item.imgAddress}
-            postText={item.postText}
+            key={item.id}
+            name={item.businessName}
+            imageUrl={item.imageUrl}
+            postText={item.description}
+            price={item.price}
             initialLikeCount={item.initialLikeCount}
-            reccomendedPrice={item.reccomendedPrice}
+            reccomendedPrice={item.price}
           />
         )
       })}
