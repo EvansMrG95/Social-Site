@@ -19,11 +19,13 @@ export default function Home() {
 
   return (
     <div>
-      <h1 className="text-5xl font-bold text-white-800 text-center mb-6">Profit Platform</h1>
+      <h1 className="text-5xl font-bold text-white text-center mb-6">Profit Platform</h1>
+      <p className="text-2xl font-bold text-white text-center mb-6">This is a pre-sale platform to aid local businesses to find out if a product they could stock would sell to potential customers.</p>
       {business.map((item) => {
         return (
           <SocialCard 
             key={item.id}
+            id={item.id}
             name={item.businessName}
             imageUrl={item.imageUrl}
             postText={item.description}

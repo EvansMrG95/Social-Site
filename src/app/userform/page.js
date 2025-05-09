@@ -48,7 +48,7 @@ const page = () => {
   return (
     <div className='flex flex-col'>
         <h1 className='text-3xl text-center mb-10 text-white'>Add your product in the form below</h1>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className='bg-gray-200 mx-auto w-[90%] md:w-[70%] p-5'>
             <div className='grid grid-cols-2 justify-items-center space-y-5 mb-6'>
                 <div className='md:w-1/3'>
                     <label className='text-gray-500 font-bold pr-4'>

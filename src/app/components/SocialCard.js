@@ -3,6 +3,7 @@ import React, {useState} from 'react'
 import Image from "next/image"
 
 const SocialCard = ({
+  id,
   name,
   imageUrl,
   postText,
@@ -10,6 +11,14 @@ const SocialCard = ({
   initialDislikeCount,
   reccomendedPrice
 }) => {
+
+  function PostDate({ id }) {
+    const postedAt = new Date(Number(id))
+    const formattedDate = postedAt.toLocaleDateString()
+    //const dateDifference = Date.now() - postedAt
+    // if dateDifference > 24
+    return <p>Posted: {formattedDate}</p>
+  }
 
 
   const [likeCount, setLikeCount] = useState(initialLikeCount || 0)
@@ -32,8 +41,12 @@ const SocialCard = ({
     <div className='flex flex-col mx-auto w-[75%] outline rounded-lg shadow-2xl p-10 bg-sky-300/70 space-y-5 mb-5'>
         <h1 className='text-3xl font-bold text-start p-5 ml-5 border-b-2 border-gray-300'>{name}</h1>
         <div className='flex justify-between space-x-2'>
-          <img src={`${imageUrl}`} className='self-center h-100 w-100 object-scale-down border shadow-xl rounded-xl'></img>
-          <p className='text-xl p-5 border shadow-xl rounded-xl'>{postText}</p>
+          <div className='w-[300px] h-[300px] border shadow-xl rounded-xl'>
+            <img src={`${imageUrl}`} className='w-full h-full object-cover'></img>
+          </div>
+          <div className='flex-1'>
+            <p className='text-xl p-5 h-full min-h-[300px] border shadow-xl rounded-xl'>{postText}</p>
+          </div>
         </div>
         <div className='flex justify-around text-3xl mb-5'>
             <button className='cursor-pointer' onClick={() => handleLike()}>
@@ -41,18 +54,21 @@ const SocialCard = ({
             </button>
           <span className="bg-green-300 rounded-xl shadow-xl">{!beenLiked ? `${0}` : `${likeCount}`} Likes</span>
           <button className='cursor-pointer' onClick={() => handleDislike()}>
-            👍  Dislike this product
+           👎  Dislike this product
             </button>
           <span className="bg-red-300 rounded-xl shadow-xl">{!beenDisliked ? `${0}` : `${dislikeCount}`} Dislikes</span>
         </div>
         <div className='flex justify-around'>
           <p className='text-3xl text-center'>RRP: £{reccomendedPrice}</p>
-          <p className='text-3xl text-center'>{likeCount > 20 ? `${"This item is hot! 🔥"}` : `${"New item 🌟"}`}</p>
+          <p className='text-3xl text-center'>{Date.now() - Number(id) < 286400000 ? `${"New item 🌟"}` : `${"This item is old! 👴"}`}</p>
         </div>
+        <p className='text-xl text-start text-gray-600'>
+          Posted: {new Date(Number(id)).toLocaleDateString()}
+        </p>
     </div>
   )
 }
-
+// {Date.now() - Date(Number(id)) < 24 ? `${"New item 🌟"} : `${"This item is old! 👴"}`}
 export default SocialCard
 
 
